@@ -45,5 +45,15 @@
         ID：<input type="text" name="id"/><br/>
         <input type="submit" value="删除"/>
     </form>
+    <h3>测试发送验证信息</h3>
+    <table>
+    <form action="/zqq_SSM_war_exploded/employee/sendSms.do" method="post">
+            <tr>
+                <td>电话:<input type="text" name="phone"/></td>
+                <td><input type="submit" value="发送"></td>
+            </tr>
+        </form>
+    </table>
+    </form>
     </body>
 </html>

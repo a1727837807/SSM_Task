@@ -1,5 +1,3 @@
-package cn.zqq.Controller;
-
 import com.aliyuncs.DefaultAcsClient;
 import com.aliyuncs.IAcsClient;
 import com.aliyuncs.dysmsapi.model.v20170525.SendSmsRequest;
@@ -7,22 +5,14 @@ import com.aliyuncs.dysmsapi.model.v20170525.SendSmsResponse;
 import com.aliyuncs.http.MethodType;
 import com.aliyuncs.profile.DefaultProfile;
 import com.aliyuncs.profile.IClientProfile;
-import org.omg.PortableInterceptor.Interceptor;
-
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLEncoder;
 
 /**
  * class创建日期
  *
- * @date 2020/9/816:21
+ * @date 2020/9/822:40
  */
-public class SMSUtil {
-    public static int SendCode(String PhoneNumbers) throws Exception{
+public class MobileAuthentication {
+    public static void SendCode(String PhoneNumbers) throws Exception{
         // 设置超时时间-可自行调整
         System.setProperty("sun.net.client.defaultConnectTimeout", "10000");
         System.setProperty("sun.net.client.defaultReadTimeout", "10000");
@@ -59,11 +49,16 @@ public class SMSUtil {
         //request.setOutId("yourOutId");
         //请求失败这里会抛ClientException异常
         SendSmsResponse sendSmsResponse = acsClient.getAcsResponse(request);
+        System.out.println("xxx");
+        System.out.println(sendSmsResponse.getCode());
         if(sendSmsResponse.getCode() != null && sendSmsResponse.getCode().equals("OK")) {
+            System.out.println("yyy");
             //请求成功
             System.out.println(sendSmsResponse.getMessage());
-            return random;
         }
-        return Integer.MIN_VALUE;
+    }
+
+    public static void main(String[] args) throws Exception {
+        SendCode("18818798983");
     }
 }

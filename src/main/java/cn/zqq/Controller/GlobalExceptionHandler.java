@@ -1,5 +1,6 @@
 package cn.zqq.Controller;
 
+import org.springframework.beans.NotReadablePropertyException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -22,6 +23,7 @@ import java.util.logging.SimpleFormatter;
 public class GlobalExceptionHandler {
     @ExceptionHandler(Exception.class)
     public ModelAndView exceptionHandler(Exception e ){
+        ModelAndView mv = new ModelAndView();
         try {
             FileOutputStream fos=new FileOutputStream("D:\\SSM_Error.log",true);
             PrintStream ps=new PrintStream(fos);
@@ -34,11 +36,12 @@ public class GlobalExceptionHandler {
 
             //错误信息打印
             e.printStackTrace(ps);
+            if (e instanceof NotReadablePropertyException)
+                mv.setViewName("error/SaveFail");
+            else mv.setViewName("error/exception");
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        ModelAndView mv = new ModelAndView();
-        mv.setViewName("error/exception");
         return mv;
     }
 }

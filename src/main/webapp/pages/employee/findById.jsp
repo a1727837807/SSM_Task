@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: 翟
@@ -20,11 +21,11 @@
             <td>电话</td>
         </tr>
         <tr>
-            <td>#{NewEmployee.id}</td>
-            <td>#{NewEmployee.name}</td>
-            <td>#{NewEmployee.sex}</td>
-            <td>#{NewEmployee.address}</td>
-            <td>#{NewEmployee.phone}</td>
+            <td><c:out value= "${NewEmployee.id}"/> </td>
+            <td><c:out value= "${NewEmployee.name}"/></td>
+            <td><c:out value= "${NewEmployee.sex}"/></td>
+            <td><c:out value= "${NewEmployee.address}"/></td>
+            <td><c:out value="${NewEmployee.phone}" /></td>
         </tr>
     </table>
 </body>

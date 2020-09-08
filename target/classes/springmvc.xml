@@ -16,7 +16,25 @@
         <property name="prefix" value="/pages/"/>
         <property name="suffix" value=".jsp"/>
     </bean>
+    <!--属性编辑器-->
+    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+        <property name="webBindingInitializer" ref="myInitializer"/>
+    </bean>
+    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"/>
+    <bean id="myInitializer" class="org.springframework.web.bind.support.ConfigurableWebBindingInitializer">
+        <property name="propertyEditorRegistrar">
+                <bean class="cn.zqq.Controller.MyPropertyRegistrar"/>
+        </property>
+    </bean>
     <!--异常处理器、文件上传解析器、拦截器等-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/*"/>
+            <mvc:exclude-mapping path="/employee/find*"/>
+            <mvc:exclude-mapping path="/employee/delete*"/>
+            <bean class="cn.zqq.Controller.MyInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
     <!--mvc注解支持-->
     <mvc:annotation-driven/>
 
