@@ -20,11 +20,11 @@
             <td>电话</td>
         </tr>
         <tr>
-            <td>#{id}</td>
-            <td>#{name}</td>
-            <td>#{sex}</td>
-            <td>#{address}</td>
-            <td>#{phone}</td>
+            <td>#{NewEmployee.id}</td>
+            <td>#{NewEmployee.name}</td>
+            <td>#{NewEmployee.sex}</td>
+            <td>#{NewEmployee.address}</td>
+            <td>#{NewEmployee.phone}</td>
         </tr>
     </table>
 </body>
